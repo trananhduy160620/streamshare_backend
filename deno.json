@@ -1,0 +1,20 @@
+{
+    "version": "1.0.0",
+    "tasks": {
+        "dev": "deno run --watch --allow-net --allow-env --allow-read=.env  app.js",
+        "start": "deno run --allow-net --allow-env app.js"
+    },
+    "imports": {
+        "@/": "./src/",
+        "@fresh/core": "jsr:@fresh/core@^2.2.0",
+        "logger": "./src/utils/logger.js",
+        "dotenv": "jsr:@std/dotenv",
+        "zod": "npm:zod",
+        "oak": "https://deno.land/x/oak@v12.6.1/mod.ts",
+        "postgres": "https://deno.land/x/postgres@v0.11.2/mod.ts",
+        "bcrypt": "https://deno.land/x/bcrypt@v0.4.1/mod.ts",
+        "http-status-codes": "https://deno.land/x/https_status_codes/mod.ts",
+        "jwt": "https://deno.land/x/djwt@v2.8/mod.ts",
+        "oak_cors": "https://deno.land/x/cors@v1.2.2/mod.ts"
+    }
+}
