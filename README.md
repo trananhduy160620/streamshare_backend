@@ -191,7 +191,7 @@ JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRES_IN=7d
 
 # Server Configuration
-PORT=5555
+PORT=3999
 NODE_ENV=development
 ```
 
@@ -217,15 +217,15 @@ denon start
 ### **API Testing**
 ```bash
 # Health check
-curl http://localhost:5555/api/v1/users/health
+curl http://localhost:3999/api/v1/users/health
 
 # User registration
-curl -X POST http://localhost:5555/api/v1/users/register \
+curl -X POST http://localhost:3999/api/v1/users/register \
   -H "Content-Type: application/json" \
   -d '{"username": "testuser", "name": "Test User", "password": "password123"}'
 
 # User login
-curl -X POST http://localhost:5555/api/v1/users/login \
+curl -X POST http://localhost:3999/api/v1/users/login \
   -H "Content-Type: application/json" \
   -d '{"username": "testuser", "password": "password123"}'
 ```
@@ -234,7 +234,7 @@ curl -X POST http://localhost:5555/api/v1/users/login \
 
 ### **Base URL**
 ```
-http://localhost:5555/api/v1
+http://localhost:3999/api/v1
 ```
 
 ### **Authentication**
@@ -370,7 +370,7 @@ echo $JWT_SECRET
 **Port Already in Use**
 ```bash
 # Find process using port
-lsof -i :5555
+lsof -i :3999
 
 # Kill process
 kill -9 <PID>
