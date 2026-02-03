@@ -33,6 +33,12 @@ router.get(
     MediaController.getListHiddenMedia
 );
 
+router.get(
+    "/my-media", 
+    authenticateToken, 
+    MediaController.getUserPublishedMedia
+);
+
 router.post(
     "/create-media",
     authenticateToken,
