@@ -16,14 +16,15 @@ COPY app.js ./
 RUN echo "PORT=3999" > .env
 
 # Cache dependencies for faster builds
-RUN deno cache --lock=deno.lock app.js
+# Skip lockfile in Docker to avoid version conflicts
+RUN deno cache app.js
 
 # Expose the port the app runs on
 EXPOSE 3999
 
 # Health check endpoint (optional but recommended)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:3999/api/v1/health || exit 1
+    CMD curl -f http://localhost:3999/api/v1/health || exit 1
 
 # Command to run the application
 CMD ["deno", "run", "--allow-net", "--allow-env", "--allow-read=.env", "app.js"]
