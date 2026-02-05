@@ -1,5 +1,5 @@
-# Use official Deno runtime image
-FROM denoland/deno:1.46.3
+# Use specific Deno version to match local environment and support lockfile version 5
+FROM denoland/deno:2.6.8
 
 # Set working directory
 WORKDIR /app
@@ -16,8 +16,7 @@ COPY app.js ./
 RUN echo "PORT=3999" > .env
 
 # Cache dependencies for faster builds
-# Skip lockfile in Docker to avoid version conflicts
-RUN deno cache app.js
+RUN deno cache --lock=deno.lock app.js
 
 # Expose the port the app runs on
 EXPOSE 3999
