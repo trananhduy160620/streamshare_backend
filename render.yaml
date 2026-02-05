@@ -1,0 +1,25 @@
+services:
+  # Web Service for Deno Application
+  - type: web
+    name: streamshare-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: 3999
+      - key: DATABASE_URL
+        sync: false  # Will be set manually in Render dashboard
+      - key: ACCESS_TOKEN_SECRET
+        sync: false  # Will be set manually in Render dashboard
+    autoDeploy: true
+    
+    # Build and start commands for Docker
+    buildCommand: docker build -t streamshare-backend .
+    startCommand: docker run -p 3999:3999 streamshare-backend
+
+databases:
+  # Not needed since we're using Neon external database
+  # This section would be used if we wanted Render's managed PostgreSQL

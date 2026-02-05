@@ -5,7 +5,12 @@ import { oakCors } from "oak_cors"; // CORS middleware for cross-origin requests
 import { StatusCodes } from "http-status-codes"; // HTTP status codes constants
 import { logger } from "@/utils/logger.utils.js"; // Custom logger utility
 import { postgresqlConnection } from "@/cores/config/postgresql.config.js"; // Database connection
-import { userRouter, mediaRouter, ratingRouter } from "@/routers/index.js"; // API route handlers
+import {
+    userRouter,
+    mediaRouter,
+    ratingRouter,
+    healthRouter,
+} from "@/routers/index.js"; // API route handlers
 import { parseFormBody } from "@/utils/parse.utils.js"; // Form data parsing utility
 import { registerRouters } from "@/utils/router.utils.js"; // Router registration utility
 import { sendError } from "@/utils/response.utils.js"; // Error response utility
@@ -94,6 +99,7 @@ registerRouters(app, [
     { router: userRouter, prefix: "/api/v1/users" }, // User management endpoints
     { router: mediaRouter, prefix: "/api/v1/media" }, // Media management endpoints
     { router: ratingRouter, prefix: "/api/v1/ratings" }, // Rating management endpoints
+    { router: healthRouter, prefix: "/api/v1" }, // Health check endpoint
 ]);
 
 // Main Application Bootstrap Function
